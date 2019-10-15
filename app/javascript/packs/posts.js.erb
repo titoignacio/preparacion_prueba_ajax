@@ -1,0 +1,32 @@
+$(document).on('ready turbolinks:load', function(){
+
+  //$('.show_post').on('click',function(e){
+  //  e.preventDefault();
+  //$('myModal').modal()
+//});
+
+
+      $("input[name='q']").on('keyup',function(){
+      var q = $(this).val()
+      //filtrar
+      if(q.length > 2){
+        $.ajax({
+          type: "get",
+          url: "/posts",
+          data: { q: $(this).val()},
+          dataType: "script"
+        });
+      };
+
+
+//liberar (deja salir)
+if(q.length == 0){
+  $.ajax({
+    type: "get",
+    url: "/posts",
+    data: { q: $(this).val()},
+    dataType: "script"
+     });
+    };
+  });
+});
